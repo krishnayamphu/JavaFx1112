@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="336.0" prefWidth="495.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx1112.UserController">
+   <children>
+      <TableView fx:id="tblUser" layoutX="14.0" layoutY="14.0" prefHeight="290.0" prefWidth="460.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+        <columns>
+          <TableColumn fx:id="colId" prefWidth="52.0000581741333" text="ID" />
+          <TableColumn fx:id="colUsername" prefWidth="152.79998779296875" text="Username" />
+            <TableColumn fx:id="colPassword" prefWidth="128.8000030517578" text="Password" />
+            <TableColumn fx:id="colCreatedAt" prefWidth="108.0" text="Created Date" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
