@@ -33,4 +33,48 @@ public class UserDAO {
         }
         return users;
     }
+
+    public static void addUser(User user) {
+        try {
+            Connection cn = ConnectDB.connect();
+            String sql = "INSERT INTO users (username,password) VALUES (?,?)";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1,user.getUsername());
+            ps.setString(2,user.getPassword());
+            ps.executeUpdate();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateUser(User user) {
+        try {
+            Connection cn = ConnectDB.connect();
+            String sql = "UPDATE users SET username=?,password=? WHERE id=?";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1,user.getUsername());
+            ps.setString(2,user.getPassword());
+            ps.setInt(3,user.getId());
+            ps.executeUpdate();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void deleteUser(int id) {
+        try {
+            Connection cn = ConnectDB.connect();
+            String sql = "DELETE FROM users WHERE id=?";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1,id);
+            ps.executeUpdate();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
