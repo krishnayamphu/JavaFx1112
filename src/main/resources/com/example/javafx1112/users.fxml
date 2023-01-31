@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="458.0" prefWidth="584.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx1112.UserController">
    <children>
-      <TableView fx:id="tblUser" layoutX="14.0" layoutY="102.0" onMouseClicked="#getUser" prefHeight="341.0" prefWidth="554.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="102.0">
+      <TableView fx:id="tblUser" layoutX="14.0" layoutY="102.0" onMouseClicked="#getUser" prefHeight="315.0" prefWidth="554.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="102.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="52.0000581741333" text="ID" />
           <TableColumn fx:id="colUsername" prefWidth="152.79998779296875" text="Username" />
@@ -38,6 +38,7 @@
                   <Button mnemonicParsing="false" onAction="#addUser" text="Save" />
                   <Button mnemonicParsing="false" onAction="#editUser" text="Update" />
                   <Button mnemonicParsing="false" onAction="#removeUser" text="Remove" />
+                  <TextField fx:id="txtSearch" onKeyTyped="#searchUser" prefHeight="26.0" prefWidth="322.0" promptText="Search Username" />
                </children>
             </HBox>
          </children>
@@ -45,5 +46,11 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </VBox>
+      <HBox alignment="CENTER_RIGHT" layoutX="430.0" layoutY="434.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label prefHeight="18.0" prefWidth="78.0" text="Total Users: " />
+            <Label fx:id="lblTotal" prefHeight="18.0" prefWidth="46.0" text="0" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

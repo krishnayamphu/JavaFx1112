@@ -5,11 +5,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
@@ -41,6 +39,12 @@ public class UserController {
     private PasswordField txtpassword;
 
     @FXML
+    private TextField txtSearch;
+
+    @FXML
+    private Label lblTotal;
+
+    @FXML
     public void initialize() {
         loadUsers();
     }
@@ -53,6 +57,7 @@ public class UserController {
         colPassword.setCellValueFactory(new PropertyValueFactory<User, String>("password"));
         colCreatedAt.setCellValueFactory(new PropertyValueFactory<User, String>("createdAt"));
         tblUser.setItems(userList);
+        getTotalUsers();
     }
 
     @FXML
@@ -97,11 +102,26 @@ public class UserController {
         clearFields();
     }
 
+    @FXML
+    void searchUser(KeyEvent event) {
+        String username = txtSearch.getText();
+        ArrayList<User> allUsers = UserDAO.getUsersByUsername(username);
+        ObservableList userList = FXCollections.observableList(allUsers);
+        colId.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
+        colUsername.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
+        colPassword.setCellValueFactory(new PropertyValueFactory<User, String>("password"));
+        colCreatedAt.setCellValueFactory(new PropertyValueFactory<User, String>("createdAt"));
+        tblUser.setItems(userList);
+    }
+
 
     void clearFields() {
         txtId.setText("");
         txtusername.setText("");
         txtpassword.setText("");
+    }
+    void getTotalUsers(){
+        lblTotal.setText(String.valueOf(UserDAO.getCountUsers()));
     }
 
 }

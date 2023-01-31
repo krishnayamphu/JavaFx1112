@@ -17,7 +17,6 @@ public class UserDAO {
             String sql = "SELECT * FROM users";
             PreparedStatement ps = cn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            ArrayList<User> allUsers = new ArrayList<>();
             while (rs.next()) {
                 User user = new User();
                 user.setId(rs.getInt("id"));
@@ -32,6 +31,46 @@ public class UserDAO {
             e.printStackTrace();
         }
         return users;
+    }
+    public static ArrayList<User> getUsersByUsername(String username) {
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            Connection cn = ConnectDB.connect();
+            String sql = "SELECT * FROM users WHERE username LIKE '"+username+"%'";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                user.setCreatedAt(rs.getString("created_at"));
+                users.add(user);
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+    public static int getCountUsers() {
+        int count=0;
+        try {
+            Connection cn = ConnectDB.connect();
+            String sql = "SELECT * FROM users";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+               count++;
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
     }
 
     public static void addUser(User user) {
