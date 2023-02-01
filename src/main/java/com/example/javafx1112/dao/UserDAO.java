@@ -2,6 +2,7 @@ package com.example.javafx1112.dao;
 
 import com.example.javafx1112.User;
 import com.example.javafx1112.dbhelper.ConnectDB;
+import javafx.scene.control.Alert;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,6 +30,9 @@ public class UserDAO {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(e.toString());
+            alert.show();
         }
         return users;
     }
@@ -51,6 +55,9 @@ public class UserDAO {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(e.toString());
+            alert.show();
         }
         return users;
     }
